@@ -1,0 +1,18 @@
+# Number of N_particles
+N_particles=2
+
+# number of N_simulations
+N_simulations=5000000
+
+# points that define the polygon
+Domain=((0, 0), (0.5, 0.86602540378), (1, 0))
+#Domain=((0, 0), (0, 1), (1, 1), (1, 0))
+
+# interactions -> which particle ignores what N_particles seperate particles with a ;
+# example for 3 particles that ignore eachother but not themselfs, note spaces between particle id's and the separator ;
+#Interactions=(1, 2) ; (0, 2) ; (1, 2) ;
+
+Interactions=() ; 
+
+# distance after which the particles start forgetting
+Decay_delay=1.75
