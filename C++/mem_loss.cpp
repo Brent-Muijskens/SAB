@@ -291,12 +291,12 @@ void simulate(std::vector<std::array<float, 2>> &points,
                 continue;
             }
 
-            if (wall.id != -1 && unconf_walls[wall.id] != i && wall.t0 + hit_data.scalar*(wall.te-wall.t0) + decay_delay< current_time){
-                continue;
-            }
-
             /* calculate norm of next hit*/
             cnorm = sqrt(pow(pos[0]-hit_data.vect[0], 2) + pow(pos[1]-hit_data.vect[1], 2));
+
+            if (wall.id != -1 && unconf_walls[wall.id] != i && wall.t0 + hit_data.scalar*(wall.te-wall.t0) + decay_delay < current_time + cnorm){
+                continue;
+            }
 
             /* hit too close -> continue*/
             if (cnorm < NORM_TOL){
@@ -356,7 +356,7 @@ void simulate(std::vector<std::array<float, 2>> &points,
                 else if (interactions[ap][j] == 1){
                     reflect_indices[ap] = -1;
                 }
-                else if (collision_time + decay_delay < current_time ){
+                else if (collision_time + decay_delay < current_time + hit_norm){
                     reflect_indices[ap] = -1;
                 }
                 else{
